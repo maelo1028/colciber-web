@@ -19,7 +19,7 @@ export default function Home() {
             </div>
           </div>
           <nav className="site-nav" aria-label="Principal">
-            <a href="#slogan" className="site-nav__link">
+            <a href="#slogan" className="site-nav__link site-nav__link--active">
               Servicio
             </a>
             <a href="#resumen" className="site-nav__link">
@@ -43,34 +43,37 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="container" aria-labelledby="resumen">
-          <div className="hover-card" tabIndex={0}>
-            <h2 id="resumen" className="hover-card__title">
-              Resumen de la página
-            </h2>
-            <div className="hover-card__content">
-              {summaryParagraphs.map((paragraph) => (
-                <p key={paragraph}>{paragraph}</p>
-              ))}
+        <section className="section section--muted" aria-labelledby="resumen">
+          <div className="container">
+            <div className="hover-card" tabIndex={0}>
+              <h2 id="resumen" className="hover-card__title">
+                Resumen de la página
+              </h2>
+              <div className="hover-card__content">
+                {summaryParagraphs.map((paragraph) => (
+                  <p key={paragraph}>{paragraph}</p>
+                ))}
+              </div>
+              <p className="hover-card__hint">Pasa el cursor o enfoca la tarjeta para desplegar el resumen.</p>
             </div>
-            <p className="hover-card__hint">Pasa el cursor o enfoca la tarjeta para desplegar el resumen.</p>
           </div>
         </section>
 
-        <section id="seguridad" className="section" aria-labelledby="seguridad-title">
-          <div className="container section__content">
-            <div>
-              <h2 id="seguridad-title">Seguridad</h2>
-              <p className="section__intro">
-                A través de ESET ofrecemos la mejor relación costo, servicio y beneficios que pueden
-                obtener sin duda. No existe otra propuesta como la nuestra, todas las negociaciones incluyen:
-              </p>
-            </div>
-            <ul className="section__list">
-              <li>
-                <strong>Apoyo de transición:</strong> Asistencia técnica y plan de trabajo para migrar de su solución actual a
-                ESET.
-              </li>
+        <section id="seguridad" className="section section--alternate" aria-labelledby="seguridad-title">
+          <div className="container">
+            <div className="section__content">
+              <div>
+                <h2 id="seguridad-title">Seguridad</h2>
+                <p className="section__intro">
+                  A través de ESET ofrecemos la mejor relación costo, servicio y beneficios que pueden
+                  obtener sin duda. No existe otra propuesta como la nuestra, todas las negociaciones incluyen:
+                </p>
+              </div>
+              <ul className="section__list">
+                <li>
+                  <strong>Apoyo de transición:</strong> Asistencia técnica y plan de trabajo para migrar de su solución actual a
+                  ESET.
+                </li>
               <li>
                 <strong>Configuración llave en mano:</strong> Con más de 10 años de experiencia te entregamos tu solución de
                 seguridad lista para trabajar, sin que hayas mirado tan siquiera el manual del usuario.
@@ -83,12 +86,13 @@ export default function Home() {
                 <strong>Soporte ilimitado:</strong> Sin excusas o letra pequeña tienes soporte durante todo el periodo de
                 licenciamiento contratado.
               </li>
-              <li>
-                <strong>Coadministración:</strong> Hemos diseñado un servicio para coadministrar junto contigo la solución
-                contratada. Contarás con un especialista asignado para ayudarte a resolver dudas, crear configuraciones,
-                políticas, tareas y mucho más sin costo adicional.
-              </li>
-            </ul>
+                <li>
+                  <strong>Coadministración:</strong> Hemos diseñado un servicio para coadministrar junto contigo la solución
+                  contratada. Contarás con un especialista asignado para ayudarte a resolver dudas, crear configuraciones,
+                  políticas, tareas y mucho más sin costo adicional.
+                </li>
+              </ul>
+            </div>
           </div>
         </section>
       </main>
