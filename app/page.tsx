@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 const summaryParagraphs = [
   "Te ahorramos el recorrido por la página. Aquí es donde deberíamos decir que somos tu “aliado estratégico en la transformación digital” y toda esa carreta… pero no. La verdad es más simple: ayudamos a empresas (sí, empresas, no al que compra antivirus en el Éxito) a que su TI deje de ser un desorden.",
   "Ponemos ESET para cuidar tus equipos y servidores como antivirus corporativo de verdad, usamos ISL Online para que el soporte remoto funcione tan fácil como el TeamViewer que todos conocen, pero pensado para empresa seria, integramos InvGate para que tus tickets e inventarios no queden sepultados en sistemas pesados tipo Aranda, y lo rematamos con un DLP para que la información sensible no salga volando por USB, correo o WhatsApp “sin querer”.",
@@ -10,9 +12,14 @@ export default function Home() {
       <header className="site-header">
         <div className="container site-header__inner">
           <div className="brand">
-            <div className="brand__icon" aria-hidden="true">
-              C
-            </div>
+            <Image
+              className="brand__icon"
+              src="/logos/logo.svg"
+              alt="ColCiber S.A.S."
+              width={140}
+              height={40}
+              priority
+            />
             <div>
               <p className="brand__name">ColCiber</p>
               <p className="brand__subtitle">Soluciones reales para TI corporativo</p>
