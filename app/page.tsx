@@ -11,26 +11,48 @@ const summaryParagraphs = [
 
 const rotatingWords = ["Seguridad", "Antivirus", "Antimalware"] as const;
 
-function GlitchText({ text }: { text: string }) {
+function RotatingSecurityWord() {
+  const [wordIndex, setWordIndex] = useState(0);
+  const [isGlitching, setIsGlitching] = useState(false);
+
+  useEffect(() => {
+    let displayTimeout: ReturnType<typeof setTimeout>;
+    let glitchTimeout: ReturnType<typeof setTimeout>;
+
+    const scheduleNextWord = () => {
+      displayTimeout = setTimeout(() => {
+        setIsGlitching(true);
+
+        glitchTimeout = setTimeout(() => {
+          setWordIndex((prev) => (prev + 1) % rotatingWords.length);
+          setIsGlitching(false);
+          scheduleNextWord();
+        }, 250);
+      }, 2000);
+    };
+
+    scheduleNextWord();
+
+    return () => {
+      clearTimeout(displayTimeout);
+      clearTimeout(glitchTimeout);
+    };
+  }, []);
+
+  const currentWord = rotatingWords[wordIndex];
+
   return (
-    <span className="glitch-text" data-glitch={text}>
-      {text}
+    <span
+      className={`glitch-word${isGlitching ? " glitch-word--active" : ""}`}
+      aria-live="polite"
+    >
+      <span className="glitch-word__text">{currentWord}</span>
+      <span className="glitch-word__static" aria-hidden="true" />
     </span>
   );
 }
 
 export default function Home() {
-  const [wordIndex, setWordIndex] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setWordIndex((prev) => (prev + 1) % rotatingWords.length);
-    }, 2000);
-
-    return () => clearInterval(interval);
-  }, []);
-
-  const currentWord = rotatingWords[wordIndex];
 
   return (
     <div className="page">
@@ -54,7 +76,7 @@ export default function Home() {
               Soporte
             </a>
             <a href="#seguridad" className="site-nav__link">
-              <GlitchText text={currentWord} />
+              Seguridad
             </a>
           </nav>
         </div>
@@ -64,7 +86,7 @@ export default function Home() {
         <section className="hero" aria-labelledby="slogan">
           <div className="container">
             <h1 id="slogan">
-              Servicio · Soporte · <GlitchText text={currentWord} />
+              Servicio · Soporte · Seguridad
             </h1>
             <p className="hero__lead">
               Acompañamos a las áreas de TI que necesitan orden, cobertura y
@@ -91,7 +113,7 @@ export default function Home() {
           <div className="container section__content">
             <div>
               <h2 id="seguridad-title">
-                <GlitchText text={currentWord} />
+                <RotatingSecurityWord />
               </h2>
               <p className="section__intro">
                 A través de ESET ofrecemos la mejor relación costo, servicio y beneficios que pueden
