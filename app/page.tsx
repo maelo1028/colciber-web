@@ -20,9 +20,6 @@ export default function Home() {
               priority
               className="brand__logo"
             />
-            <p className="brand__subtitle">
-              Soluciones reales para TI corporativo
-            </p>
           </div>
           <nav className="site-nav" aria-label="Principal">
             <a href="#slogan" className="site-nav__link site-nav__link--active">

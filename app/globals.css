@@ -122,26 +122,22 @@ main {
 .hero {
   padding: 4.5rem 0 3rem;
   text-align: left;
-  background: linear-gradient(
-    180deg,
-    rgba(0, 122, 140, 0.16) 0%,
-    rgba(0, 122, 140, 0.04) 60%,
-    var(--color-background) 100%
-  );
+  background: var(--color-accent);
+  color: var(--color-surface);
   border-bottom: 1px solid rgba(12, 43, 60, 0.06);
 }
 
 .hero h1 {
   font-size: clamp(2rem, 4vw, 3.5rem);
   margin-bottom: 1rem;
-  color: var(--color-accent);
+  color: var(--color-surface);
 }
 
 .hero__lead {
   max-width: 720px;
   font-size: 1.15rem;
   line-height: 1.7;
-  color: var(--color-muted);
+  color: rgba(255, 255, 255, 0.8);
 }
 
 /* TARJETA RESUMEN */
