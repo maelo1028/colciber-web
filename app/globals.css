@@ -246,6 +246,64 @@ main {
   margin-bottom: 0.25rem;
 }
 
+/* TEXTO CON EFECTO GLITCH */
+
+.glitch-text {
+  position: relative;
+  display: inline-block;
+  padding: 0 0.15em;
+  isolation: isolate;
+}
+
+.glitch-text::before,
+.glitch-text::after {
+  content: attr(data-glitch);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  opacity: 0.6;
+}
+
+.glitch-text::before {
+  color: #ff3366;
+  animation: glitch-shift 1.4s infinite ease-in-out alternate;
+}
+
+.glitch-text::after {
+  color: #29f2ff;
+  animation: glitch-shift 1.4s infinite ease-in-out alternate-reverse;
+}
+
+@keyframes glitch-shift {
+  0% {
+    transform: translate(0);
+    clip-path: inset(0 0 0 0);
+  }
+  20% {
+    transform: translate(-1px, -1px);
+    clip-path: inset(0 0 30% 0);
+  }
+  40% {
+    transform: translate(1px, 1px);
+    clip-path: inset(40% 0 10% 0);
+  }
+  60% {
+    transform: translate(-1.5px, 0.5px);
+    clip-path: inset(10% 0 40% 0);
+  }
+  80% {
+    transform: translate(0.5px, -1px);
+    clip-path: inset(60% 0 0 0);
+  }
+  100% {
+    transform: translate(0);
+    clip-path: inset(0 0 0 0);
+  }
+}
+
 /* RESPONSIVE */
 
 @media (max-width: 768px) {
