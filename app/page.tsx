@@ -1,4 +1,7 @@
+"use client";
+
 import Image from "next/image";
+import { useEffect, useState } from "react";
 
 const summaryParagraphs = [
   "Te ahorramos el recorrido por la página. Aquí es donde deberíamos decir que somos tu “aliado estratégico en la transformación digital” y toda esa carreta… pero no. La verdad es más simple: ayudamos a empresas (sí, empresas, no al que compra antivirus en el Éxito) a que su TI deje de ser un desorden.",
@@ -6,7 +9,53 @@ const summaryParagraphs = [
   "Y no se queda en vender licencias: tienes soporte ilimitado sin peros, pruebas de phishing que te regalamos para que tu gente despierte (y si quieres algo más pro, también te lo montamos) y, por si fuera poco, te dejamos todo listo para usar y te ayudamos a administrarlo en coadministración; esa es, en serio, la diferencia. Si algo de esto te suena a lo que tu empresa necesita, déjanos tus datos, armamos una prueba sin compromiso y, si al final no te sirve (cosa que dudamos bastante), no pasa nada: pero ya sabes quién te habla sin maquillaje cuando de TI se trata.",
 ];
 
+const rotatingWords = ["Seguridad", "Antivirus", "Antimalware"] as const;
+const WORD_DISPLAY_DURATION = 2000;
+const GLITCH_DURATION = 250;
+
+function RotatingSecurityWord() {
+  const [wordIndex, setWordIndex] = useState(0);
+  const [isGlitching, setIsGlitching] = useState(false);
+
+  useEffect(() => {
+    let displayTimeout: ReturnType<typeof setTimeout> | undefined;
+    let glitchTimeout: ReturnType<typeof setTimeout> | undefined;
+
+    const runSequence = () => {
+      displayTimeout = setTimeout(() => {
+        setIsGlitching(true);
+
+        glitchTimeout = setTimeout(() => {
+          setWordIndex((prev) => (prev + 1) % rotatingWords.length);
+          setIsGlitching(false);
+          runSequence();
+        }, GLITCH_DURATION);
+      }, WORD_DISPLAY_DURATION);
+    };
+
+    runSequence();
+
+    return () => {
+      if (displayTimeout) clearTimeout(displayTimeout);
+      if (glitchTimeout) clearTimeout(glitchTimeout);
+    };
+  }, []);
+
+  const currentWord = rotatingWords[wordIndex];
+
+  return (
+    <span
+      className={`glitch-word${isGlitching ? " glitch-word--active" : ""}`}
+      aria-live="polite"
+    >
+      <span className="glitch-word__text">{currentWord}</span>
+      <span className="glitch-word__static" aria-hidden="true" />
+    </span>
+  );
+}
+
 export default function Home() {
+
   return (
     <div className="page">
       <header className="site-header">
@@ -38,7 +87,9 @@ export default function Home() {
       <main>
         <section className="hero" aria-labelledby="slogan">
           <div className="container">
-            <h1 id="slogan">Servicio · Soporte · Seguridad</h1>
+            <h1 id="slogan">
+              Servicio · Soporte · Seguridad
+            </h1>
             <p className="hero__lead">
               Acompañamos a las áreas de TI que necesitan orden, cobertura y
               aliados comprometidos con la continuidad de su operación.
@@ -63,7 +114,9 @@ export default function Home() {
         <section id="seguridad" className="section" aria-labelledby="seguridad-title">
           <div className="container section__content">
             <div>
-              <h2 id="seguridad-title">Seguridad</h2>
+              <h2 id="seguridad-title">
+                <RotatingSecurityWord />
+              </h2>
               <p className="section__intro">
                 A través de ESET ofrecemos la mejor relación costo, servicio y beneficios que pueden
                 obtener sin duda. No existe otra propuesta como la nuestra, todas las negociaciones incluyen:

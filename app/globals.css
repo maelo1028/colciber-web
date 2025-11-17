@@ -246,6 +246,67 @@ main {
   margin-bottom: 0.25rem;
 }
 
+/* TEXTO ROTATIVO CON GLITCH TEMPORAL */
+
+.glitch-word {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 7ch;
+}
+
+.glitch-word__text {
+  transition: opacity 0.12s ease;
+}
+
+.glitch-word__static {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  background: repeating-linear-gradient(
+      0deg,
+      #000000 0 2px,
+      #ffffff 2px 4px
+    )
+    center/100% 4px;
+  mix-blend-mode: normal;
+  filter: grayscale(100%) contrast(210%);
+  pointer-events: none;
+}
+
+.glitch-word--active .glitch-word__text {
+  opacity: 0;
+}
+
+.glitch-word--active .glitch-word__static {
+  opacity: 0.9;
+  animation: glitch-static 140ms steps(2, end) infinite;
+}
+
+@keyframes glitch-static {
+  0% {
+    clip-path: inset(0 0 75% 0);
+    transform: translate(-1px, -1px);
+  }
+  25% {
+    clip-path: inset(30% 0 30% 0);
+    transform: translate(1px, 0);
+  }
+  50% {
+    clip-path: inset(10% 0 50% 0);
+    transform: translate(-0.5px, 1px);
+  }
+  75% {
+    clip-path: inset(60% 0 5% 0);
+    transform: translate(0.5px, -1px);
+  }
+  100% {
+    clip-path: inset(5% 0 65% 0);
+    transform: translate(0, 0);
+  }
+}
+
 /* RESPONSIVE */
 
 @media (max-width: 768px) {
