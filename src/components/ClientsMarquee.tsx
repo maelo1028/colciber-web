@@ -88,6 +88,10 @@ export default function ClientsMarquee({
       return;
     }
 
+    const computed = getComputedStyle(track);
+    const gapValue =
+      Number.parseFloat(computed.columnGap || computed.gap || "0") || 0;
+
     let frameId = 0;
     let lastTime: number | null = null;
 
@@ -101,7 +105,7 @@ export default function ClientsMarquee({
       const distance = (speed * delta) / 1000;
       positionRef.current += distance;
 
-      const groupWidth = group.offsetWidth;
+      const groupWidth = group.offsetWidth + gapValue;
       if (groupWidth > 0 && positionRef.current >= groupWidth) {
         positionRef.current -= groupWidth;
       }
@@ -118,7 +122,7 @@ export default function ClientsMarquee({
       positionRef.current = 0;
       track.style.transform = "translate3d(0, 0, 0)";
     };
-  }, [speed, widths]);
+  }, [speed]);
 
   const setWidthFromImage = useCallback((file: string, element: HTMLImageElement) => {
     if (!element || !element.naturalWidth || !element.naturalHeight) {
