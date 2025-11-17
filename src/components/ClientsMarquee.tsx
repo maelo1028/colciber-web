@@ -35,6 +35,17 @@ const LOGOS = [
   "ucentral.png",
 ] as const;
 
+const shuffle = (items: readonly string[]) => {
+  const copy = [...items];
+
+  for (let i = copy.length - 1; i > 0; i -= 1) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [copy[i], copy[j]] = [copy[j], copy[i]];
+  }
+
+  return copy;
+};
+
 const preventContext = (event: SyntheticEvent) => {
   event.preventDefault();
 };
@@ -67,6 +78,7 @@ export default function ClientsMarquee({
   const positionRef = useRef(0);
   const [widths, setWidths] = useState<Record<string, number>>({});
   const [failed, setFailed] = useState<Record<string, boolean>>({});
+  const [logoOrder] = useState(() => shuffle(LOGOS));
 
   useEffect(() => {
     const track = trackRef.current;
@@ -195,7 +207,7 @@ export default function ClientsMarquee({
                 className="clients-marquee__group"
                 ref={group === 0 ? groupRef : undefined}
               >
-                {LOGOS.map((file, index) => renderLogo(file, index, group))}
+                {logoOrder.map((file, index) => renderLogo(file, index, group))}
               </div>
             ))}
           </div>

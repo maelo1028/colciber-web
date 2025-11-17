@@ -334,10 +334,13 @@ main {
 
 .clients-marquee__image {
   max-height: 64px;
+  max-width: 100%;
+  height: auto;
   width: auto;
   opacity: 0.8;
   filter: grayscale(0.85);
   transition: opacity 0.3s ease, filter 0.3s ease;
+  object-fit: contain;
 }
 
 .clients-marquee__card:hover .clients-marquee__image {
