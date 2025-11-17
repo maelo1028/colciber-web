@@ -1,4 +1,5 @@
 import Image from "next/image";
+import GlitchHeading from "./components/GlitchHeading";
 
 const summaryParagraphs = [
   "Te ahorramos el recorrido por la página. Aquí es donde deberíamos decir que somos tu “aliado estratégico en la transformación digital” y toda esa carreta… pero no. La verdad es más simple: ayudamos a empresas (sí, empresas, no al que compra antivirus en el Éxito) a que su TI deje de ser un desorden.",
@@ -63,7 +64,9 @@ export default function Home() {
         <section id="seguridad" className="section" aria-labelledby="seguridad-title">
           <div className="container section__content">
             <div>
-              <h2 id="seguridad-title">Seguridad</h2>
+              <h2 id="seguridad-title">
+                <GlitchHeading />
+              </h2>
               <p className="section__intro">
                 A través de ESET ofrecemos la mejor relación costo, servicio y beneficios que pueden
                 obtener sin duda. No existe otra propuesta como la nuestra, todas las negociaciones incluyen:
