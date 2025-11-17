@@ -1,4 +1,5 @@
 import Image from "next/image";
+import ClientsMarquee from "../src/components/ClientsMarquee";
 
 const summaryParagraphs = [
   "Te ahorramos el recorrido por la página. Aquí es donde deberíamos decir que somos tu “aliado estratégico en la transformación digital” y toda esa carreta… pero no. La verdad es más simple: ayudamos a empresas (sí, empresas, no al que compra antivirus en el Éxito) a que su TI deje de ser un desorden.",
@@ -13,7 +14,7 @@ export default function Home() {
         <div className="container site-header__inner">
           <div className="brand">
             <Image
-              src="/logos/logo_wide.png"
+              src="/logo_wide.png"
               alt="ColCiber S.A.S."
               width={240}
               height={80}
@@ -59,6 +60,8 @@ export default function Home() {
             <p className="hover-card__hint">Pasa el cursor o enfoca la tarjeta para desplegar el resumen.</p>
           </div>
         </section>
+
+        <ClientsMarquee />
 
         <section id="seguridad" className="section" aria-labelledby="seguridad-title">
           <div className="container section__content">
