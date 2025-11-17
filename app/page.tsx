@@ -10,32 +10,34 @@ const summaryParagraphs = [
 ];
 
 const rotatingWords = ["Seguridad", "Antivirus", "Antimalware"] as const;
+const WORD_DISPLAY_DURATION = 2000;
+const GLITCH_DURATION = 250;
 
 function RotatingSecurityWord() {
   const [wordIndex, setWordIndex] = useState(0);
   const [isGlitching, setIsGlitching] = useState(false);
 
   useEffect(() => {
-    let displayTimeout: ReturnType<typeof setTimeout>;
-    let glitchTimeout: ReturnType<typeof setTimeout>;
+    let displayTimeout: ReturnType<typeof setTimeout> | undefined;
+    let glitchTimeout: ReturnType<typeof setTimeout> | undefined;
 
-    const scheduleNextWord = () => {
+    const runSequence = () => {
       displayTimeout = setTimeout(() => {
         setIsGlitching(true);
 
         glitchTimeout = setTimeout(() => {
           setWordIndex((prev) => (prev + 1) % rotatingWords.length);
           setIsGlitching(false);
-          scheduleNextWord();
-        }, 250);
-      }, 2000);
+          runSequence();
+        }, GLITCH_DURATION);
+      }, WORD_DISPLAY_DURATION);
     };
 
-    scheduleNextWord();
+    runSequence();
 
     return () => {
-      clearTimeout(displayTimeout);
-      clearTimeout(glitchTimeout);
+      if (displayTimeout) clearTimeout(displayTimeout);
+      if (glitchTimeout) clearTimeout(glitchTimeout);
     };
   }, []);
 

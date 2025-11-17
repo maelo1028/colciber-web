@@ -265,12 +265,13 @@ main {
   inset: 0;
   opacity: 0;
   background: repeating-linear-gradient(
-    0deg,
-    #ffffff 0 2px,
-    #000000 2px 4px
-  );
-  mix-blend-mode: lighten;
-  filter: contrast(180%);
+      0deg,
+      #000000 0 2px,
+      #ffffff 2px 4px
+    )
+    center/100% 4px;
+  mix-blend-mode: normal;
+  filter: grayscale(100%) contrast(210%);
   pointer-events: none;
 }
 
@@ -280,7 +281,7 @@ main {
 
 .glitch-word--active .glitch-word__static {
   opacity: 0.9;
-  animation: glitch-static 120ms steps(2, end) infinite;
+  animation: glitch-static 140ms steps(2, end) infinite;
 }
 
 @keyframes glitch-static {
