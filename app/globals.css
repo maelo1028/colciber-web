@@ -417,7 +417,8 @@ main {
 
 .clients-marquee__card {
   flex: none;
-  background: rgba(243, 248, 251, 0.95);
+  position: relative;
+  background: linear-gradient(135deg, rgba(243, 248, 251, 0.95), rgba(0, 122, 140, 0.08));
   border-radius: 20px;
   border: 1px solid rgba(18, 50, 64, 0.08);
   box-shadow: 0 18px 36px rgba(7, 43, 66, 0.14);
@@ -429,27 +430,47 @@ main {
   transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease, background 0.35s ease;
 }
 
+.clients-marquee__card::after {
+  content: "";
+  position: absolute;
+  inset: 10px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.68);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.clients-marquee__card > * {
+  position: relative;
+  z-index: 1;
+}
+
 .clients-marquee__card:hover {
   transform: translateY(-6px) scale(1.02);
   box-shadow: 0 32px 60px rgba(12, 43, 60, 0.25);
   border-color: rgba(0, 122, 140, 0.45);
-  background: #ffffff;
+  background: linear-gradient(135deg, rgba(240, 249, 252, 0.92), rgba(0, 122, 140, 0.12));
+}
+
+.clients-marquee__card:hover::after {
+  opacity: 1;
 }
 
 .clients-marquee__image {
-  max-height: 64px;
-  max-width: 100%;
+  width: 85%;
+  max-width: 85%;
+  max-height: calc(100% - 24px);
   height: auto;
-  width: auto;
-  opacity: 0.8;
-  filter: grayscale(0.85);
+  opacity: 0.9;
+  filter: grayscale(0.65) drop-shadow(0 3px 8px rgba(12, 43, 60, 0.18));
   transition: opacity 0.3s ease, filter 0.3s ease;
   object-fit: contain;
 }
 
 .clients-marquee__card:hover .clients-marquee__image {
   opacity: 1;
-  filter: grayscale(0);
+  filter: grayscale(0) drop-shadow(0 8px 18px rgba(12, 43, 60, 0.2));
 }
 
 .clients-marquee__fallback {
