@@ -223,27 +223,115 @@ main {
   margin: 0.75rem 0 0;
 }
 
-.section__list {
+.section__grid {
   margin: 0;
-  padding-left: 1.2rem;
+  padding: 0;
   display: grid;
-  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+
+.section-card {
+  background: rgba(0, 122, 140, 0.08);
+  border-radius: 18px;
+  padding: 1.5rem;
+  border: 1px solid rgba(12, 43, 60, 0.08);
+  box-shadow: 0 18px 38px rgba(7, 43, 66, 0.12);
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  min-height: 200px;
+}
+
+.section-card:hover,
+.section-card:focus-within {
+  transform: translateY(-6px);
+  box-shadow: 0 26px 60px rgba(7, 43, 66, 0.18);
+}
+
+.section-card h3 {
+  margin: 0 0 0.75rem;
+  font-size: 1.15rem;
+  color: var(--color-accent);
+}
+
+.section-card p {
+  margin: 0;
+  line-height: 1.6;
   color: var(--color-text);
 }
 
-.section__list li {
-  background: rgba(0, 122, 140, 0.08);
-  border-left: 4px solid var(--color-primary);
-  padding: 1rem 1rem 1rem 1.25rem;
-  border-radius: 14px;
-  line-height: 1.65;
+.glitch-title {
+  position: relative;
+  display: inline-block;
+  color: var(--color-accent);
+  letter-spacing: 0.03em;
 }
 
-.section__list strong {
-  display: block;
-  font-size: 1rem;
-  color: var(--color-accent);
-  margin-bottom: 0.25rem;
+.glitch-title--glitching {
+  color: #f5f5f5;
+  background: #050505;
+  padding: 0.1em 0.25em;
+  filter: grayscale(100%) contrast(1.2);
+  animation: glitch-shift 0.35s steps(2, end) infinite;
+}
+
+.glitch-title--glitching::before,
+.glitch-title--glitching::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  color: #f5f5f5;
+  background: #050505;
+  filter: grayscale(100%) contrast(1.2);
+  mix-blend-mode: screen;
+}
+
+.glitch-title--glitching::before {
+  clip-path: inset(0 0 55% 0);
+  animation: glitch-slice-1 0.35s steps(2, end) infinite;
+}
+
+.glitch-title--glitching::after {
+  clip-path: inset(45% 0 0 0);
+  animation: glitch-slice-2 0.35s steps(2, end) infinite;
+}
+
+@keyframes glitch-shift {
+  0% {
+    transform: none;
+  }
+  30% {
+    transform: skew(-4deg);
+  }
+  60% {
+    transform: translate(-3px, 2px);
+  }
+  100% {
+    transform: none;
+  }
+}
+
+@keyframes glitch-slice-1 {
+  0% {
+    transform: translate(-2px, -1px);
+  }
+  50% {
+    transform: translate(2px, -1px);
+  }
+  100% {
+    transform: translate(-1px, 1px);
+  }
+}
+
+@keyframes glitch-slice-2 {
+  0% {
+    transform: translate(2px, 1px);
+  }
+  50% {
+    transform: translate(-2px, 1px);
+  }
+  100% {
+    transform: translate(1px, -1px);
+  }
 }
 
 /* RESPONSIVE */

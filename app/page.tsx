@@ -1,10 +1,71 @@
+"use client";
+
 import Image from "next/image";
+import { useEffect, useState } from "react";
 
 const summaryParagraphs = [
   "Te ahorramos el recorrido por la página. Aquí es donde deberíamos decir que somos tu “aliado estratégico en la transformación digital” y toda esa carreta… pero no. La verdad es más simple: ayudamos a empresas (sí, empresas, no al que compra antivirus en el Éxito) a que su TI deje de ser un desorden.",
   "Ponemos ESET para cuidar tus equipos y servidores como antivirus corporativo de verdad, usamos ISL Online para que el soporte remoto funcione tan fácil como el TeamViewer que todos conocen, pero pensado para empresa seria, integramos InvGate para que tus tickets e inventarios no queden sepultados en sistemas pesados tipo Aranda, y lo rematamos con un DLP para que la información sensible no salga volando por USB, correo o WhatsApp “sin querer”.",
   "Y no se queda en vender licencias: tienes soporte ilimitado sin peros, pruebas de phishing que te regalamos para que tu gente despierte (y si quieres algo más pro, también te lo montamos) y, por si fuera poco, te dejamos todo listo para usar y te ayudamos a administrarlo en coadministración; esa es, en serio, la diferencia. Si algo de esto te suena a lo que tu empresa necesita, déjanos tus datos, armamos una prueba sin compromiso y, si al final no te sirve (cosa que dudamos bastante), no pasa nada: pero ya sabes quién te habla sin maquillaje cuando de TI se trata.",
 ];
+
+const securityHighlights = [
+  {
+    title: "Apoyo de transición",
+    description: "Asistencia técnica y plan de trabajo para migrar de su solución actual a ESET.",
+  },
+  {
+    title: "Configuración llave en mano",
+    description:
+      "Con más de 10 años de experiencia te entregamos tu solución de seguridad lista para trabajar, sin que hayas mirado tan siquiera el manual del usuario.",
+  },
+  {
+    title: "Migración de políticas",
+    description:
+      "Transferimos las políticas de tu solución actual a ESET con un proceso de homologación según las capacidades de la suite de ESET contratada.",
+  },
+  {
+    title: "Soporte ilimitado",
+    description: "Sin excusas o letra pequeña tienes soporte durante todo el periodo de licenciamiento contratado.",
+  },
+  {
+    title: "Coadministración",
+    description:
+      "Hemos diseñado un servicio para coadministrar junto contigo la solución contratada. Contarás con un especialista asignado para ayudarte a resolver dudas, crear configuraciones, políticas, tareas y mucho más sin costo adicional.",
+  },
+];
+
+const rotatingWords = ["Seguridad", "Antivirus", "Antimalware"];
+
+function GlitchingWord() {
+  const [wordIndex, setWordIndex] = useState(0);
+  const [isGlitching, setIsGlitching] = useState(false);
+
+  useEffect(() => {
+    let glitchTimeout: ReturnType<typeof setTimeout>;
+    const intervalId = setInterval(() => {
+      setIsGlitching(true);
+      glitchTimeout = setTimeout(() => {
+        setWordIndex((prev) => (prev + 1) % rotatingWords.length);
+        setIsGlitching(false);
+      }, 450);
+    }, 2000);
+
+    return () => {
+      clearInterval(intervalId);
+      clearTimeout(glitchTimeout);
+    };
+  }, []);
+
+  return (
+    <span
+      className={`glitch-title ${isGlitching ? "glitch-title--glitching" : ""}`}
+      data-text={rotatingWords[wordIndex]}
+    >
+      {rotatingWords[wordIndex]}
+    </span>
+  );
+}
 
 export default function Home() {
   return (
@@ -63,44 +124,25 @@ export default function Home() {
         <section id="seguridad" className="section" aria-labelledby="seguridad-title">
           <div className="container section__content">
             <div>
-              <h2 id="seguridad-title">Seguridad</h2>
+              <h2 id="seguridad-title">
+                <GlitchingWord />
+              </h2>
               <p className="section__intro">
                 A través de ESET ofrecemos la mejor relación costo, servicio y beneficios que pueden
                 obtener sin duda. No existe otra propuesta como la nuestra, todas las negociaciones incluyen:
               </p>
             </div>
-            <ul className="section__list">
-              <li>
-                <strong>Apoyo de transición:</strong> Asistencia técnica y plan de trabajo para migrar de su solución actual a
-                ESET.
-              </li>
-              <li>
-                <strong>Configuración llave en mano:</strong> Con más de 10 años
-                de experiencia te entregamos tu solución de seguridad lista para
-                trabajar, sin que hayas mirado tan siquiera el manual del
-                usuario.
-              </li>
-              <li>
-                <strong>Migración de políticas:</strong> Transferimos las
-                políticas de tu solución actual a ESET con un proceso de
-                homologación según las capacidades de la suite de ESET
-                contratada.
-              </li>
-              <li>
-                <strong>Soporte ilimitado:</strong> Sin excusas o letra pequeña
-                tienes soporte durante todo el periodo de licenciamiento
-                contratado.
-              </li>
-              <li>
-                <strong>Coadministración:</strong> Hemos diseñado un servicio para coadministrar junto contigo la solución
-                contratada. Contarás con un especialista asignado para ayudarte a resolver dudas, crear configuraciones,
-                políticas, tareas y mucho más sin costo adicional.
-              </li>
-            </ul>
+            <div className="section__grid" role="list">
+              {securityHighlights.map((item) => (
+                <article key={item.title} className="section-card" role="listitem">
+                  <h3>{item.title}</h3>
+                  <p>{item.description}</p>
+                </article>
+              ))}
+            </div>
           </div>
         </section>
       </main>
     </div>
   );
 }
-
