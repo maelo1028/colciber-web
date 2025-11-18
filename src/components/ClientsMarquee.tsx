@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { SyntheticEvent } from "react";
 
-const LOGO_HEIGHT = 64;
+const LOGO_HEIGHT = 96;
 const PAD_X = 32;
 const MIN_CARD_WIDTH = 180;
 const MAX_CARD_WIDTH = 260;
