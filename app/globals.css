@@ -463,14 +463,17 @@ main {
   max-height: calc(100% - 24px);
   height: auto;
   opacity: 0.9;
-  filter: grayscale(0.65) drop-shadow(0 3px 8px rgba(12, 43, 60, 0.18));
+  filter: grayscale(1) saturate(0) brightness(1.05) contrast(1.15)
+    drop-shadow(0 3px 8px rgba(12, 43, 60, 0.18));
   transition: opacity 0.3s ease, filter 0.3s ease;
   object-fit: contain;
 }
 
-.clients-marquee__card:hover .clients-marquee__image {
+.clients-marquee__card:hover .clients-marquee__image,
+.clients-marquee__card:focus-visible .clients-marquee__image {
   opacity: 1;
-  filter: grayscale(0) drop-shadow(0 8px 18px rgba(12, 43, 60, 0.2));
+  filter: grayscale(0) saturate(1) brightness(1)
+    contrast(1) drop-shadow(0 8px 18px rgba(12, 43, 60, 0.2));
 }
 
 .clients-marquee__fallback {
