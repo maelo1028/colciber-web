@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import styles from "./GlitchingSecurityTitle.module.css";
 
 const rotatingWords = ["Seguridad", "Antivirus", "Antimalware"];
 
@@ -39,7 +40,7 @@ export default function GlitchingSecurityTitle() {
   return (
     <h2
       id="seguridad-title"
-      className={`glitch-title${isGlitching ? " glitch-title--active" : ""}`}
+      className={`${styles.glitchTitle} ${isGlitching ? styles.active : ""}`.trim()}
       data-text={currentWord}
     >
       {currentWord}
