@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
+import { Inter } from "next/font/google";
 import type { ReactNode } from "react";
 import "./globals.css";
+
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "ColCiber | Servicio, Soporte y Seguridad",
@@ -14,7 +17,7 @@ export default function RootLayout({
   children: ReactNode;
 }) {
   return (
-    <html lang="es">
+    <html lang="es" className={inter.className}>
       <body>{children}</body>
     </html>
   );
