@@ -1,5 +1,7 @@
 import type { CSSProperties } from "react";
 
+import type { CSSProperties } from "react";
+
 import Image from "next/image";
 import styles from "./ClientsMarquee.module.css";
 
@@ -67,6 +69,7 @@ export default function ClientsMarquee({
                       width={180}
                       loading={group === 0 ? "eager" : "lazy"}
                       draggable={false}
+                      onContextMenu={(event) => event.preventDefault()}
                       className={styles.image}
                       unoptimized={file.endsWith(".svg")}
                     />

@@ -121,6 +121,8 @@
   transition: opacity 0.3s ease, filter 0.3s ease;
   object-fit: contain;
   -webkit-user-drag: none;
+  pointer-events: none;
+  user-select: none;
   user-drag: none;
 }
 
