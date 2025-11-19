@@ -1,3 +1,5 @@
+import type { CSSProperties } from "react";
+
 import Image from "next/image";
 import styles from "./ClientsMarquee.module.css";
 
@@ -38,7 +40,8 @@ export default function ClientsMarquee({
   title = "Clientes que confían en nosotros",
   durationSeconds = 28,
 }: ClientsMarqueeProps) {
-  const marqueeStyle = { ["--marquee-duration" as const]: `${durationSeconds}s` };
+  type MarqueeStyle = CSSProperties & { "--marquee-duration"?: string };
+  const marqueeStyle: MarqueeStyle = { "--marquee-duration": `${durationSeconds}s` };
 
   return (
     <section className={`${styles.marquee} ${className}`.trim()}>
