@@ -1,0 +1,56 @@
+.footer {
+  background: #0c2b3c;
+  color: rgba(255, 255, 255, 0.88);
+  padding: 2.5rem 0;
+  margin-top: auto;
+}
+
+.inner {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+}
+
+.brand {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.title {
+  margin: 0;
+  font-size: 1.2rem;
+  color: #ffffff;
+}
+
+.text {
+  margin: 0;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.35rem;
+}
+
+.link {
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.link:hover,
+.link:focus-visible {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+.smallPrint {
+  margin: 1rem 0 0;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.7);
+}
